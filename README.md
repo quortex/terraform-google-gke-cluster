@@ -29,7 +29,7 @@ Check out these related projects.
 
 **Got a question?**
 
-File a GitHub [issue](https://github.com/quortex/terraform-google-network/issues) or send us an [email][email].
+File a GitHub [issue](https://github.com/quortex/terraform-google-gke-cluster/issues) or send us an [email][email].
 
 
   [logo]: https://storage.googleapis.com/quortex-assets/logo.webp
