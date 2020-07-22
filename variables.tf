@@ -78,6 +78,18 @@ variable "master_authorized_networks" {
   default     = {}
 }
 
+variable "network_policy_enabled" {
+  type        = bool
+  description = "Whether network policy is enabled on the cluster."
+  default     = false
+}
+
+variable "network_policy_provider" {
+  type        = string
+  description = "The selected network policy provider."
+  default     = "PROVIDER_UNSPECIFIED"
+}
+
 variable "enable_legacy_abac" {
   type        = bool
   description = "Whether the ABAC authorizer is enabled for this cluster. When enabled, identities in the system, including service accounts, nodes, and controllers, will have statically granted permissions beyond those provided by the RBAC configuration or IAM."
