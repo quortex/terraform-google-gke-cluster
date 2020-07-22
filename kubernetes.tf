@@ -92,6 +92,11 @@ resource "google_container_cluster" "quortex" {
   # When enabled, identities in the system, including service accounts, nodes, and controllers, will have statically granted permissions beyond those provided by the RBAC configuration or IAM.
   enable_legacy_abac = var.enable_legacy_abac
 
+  network_policy {
+    enabled  = var.network_policy_enabled
+    provider = var.network_policy_provider
+  }
+
   # The configuration for addons supported by GKE.
   addons_config {
 
