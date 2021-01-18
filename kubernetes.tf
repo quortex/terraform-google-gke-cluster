@@ -189,6 +189,12 @@ resource "google_container_node_pool" "quortex" {
     #       effect (Required) Effect for taint. Accepted values are NO_SCHEDULE, PREFER_NO_SCHEDULE, and NO_EXECUTE.
     taint = lookup(each.value, "taint", null)
 
+    # The metadata key/value pairs assigned to instances in the cluster.
+    metadata = {
+      disable-legacy-endpoints = "true"
+    }
+
+
     # The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls.
     tags = lookup(each.value, "tags", [])
 
