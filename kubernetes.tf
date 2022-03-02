@@ -174,6 +174,9 @@ resource "google_container_node_pool" "quortex" {
     # List of the type and count of accelerator cards attached to the instance.
     guest_accelerator = lookup(each.value, "guest_accelerator", [])
 
+    # A boolean that represents whether or not the underlying node  VPs are shielded 
+    enable_shielded_nodes = lookup(each.value, "enable_shielded_nodes", true)
+
     # The set of Google API scopes to be made available on all of the node VMs under the "default" service account.
     # These can be either FQDNs, or scope aliases. The following scopes are necessary to ensure the correct functioning of the cluster:
     # storage-ro (https://www.googleapis.com/auth/devstorage.read_only), if the cluster must read private images from GCR. Note this will grant read access to ALL GCS content unless you also specify a custom role. See https://cloud.google.com/kubernetes-engine/docs/how-to/access-scopes
