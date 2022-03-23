@@ -53,8 +53,8 @@ resource "google_container_cluster" "quortex" {
   default_max_pods_per_node = var.default_max_pods_per_node
 
   node_config {
-      shielded_instance_config{
-      enable_secure_boot= var.enable_secure_boot
+    shielded_instance_config {
+      enable_secure_boot = var.enable_secure_boot
     }
   }
 
@@ -155,9 +155,9 @@ resource "google_container_node_pool" "quortex" {
 
   node_config {
 
-    shielded_instance_config{
-    enable_secure_boot= var.enable_secure_boot
-  }
+    shielded_instance_config {
+      enable_secure_boot = var.enable_secure_boot
+    }
 
     # The name of a Google Compute Engine machine type.
     machine_type = lookup(each.value, "machine_type", "n1-standard-1")

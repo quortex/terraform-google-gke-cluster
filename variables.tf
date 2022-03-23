@@ -73,7 +73,7 @@ variable "master_cidr_block" {
 }
 
 variable "master_authorized_networks" {
-  type        = map
+  type        = map(any)
   description = "External networks that can access the Kubernetes cluster master through HTTPS."
   default     = {}
 }
@@ -109,7 +109,7 @@ variable "logging_service" {
 }
 
 variable "resource_labels" {
-  type        = map
+  type        = map(any)
   description = "The GCE resource labels (a map of key/value pairs) to be applied to the cluster."
   default     = {}
 }
