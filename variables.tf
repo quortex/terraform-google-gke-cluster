@@ -119,6 +119,7 @@ variable "enable_secure_boot" {
   description = "Defines if the instance has Secure Boot enabled"
   default     = false
 }
+
 variable "daily_maintenance_start_time" {
   type        = string
   description = "Cluster daily maintenance start time in RFC3339 date format."
