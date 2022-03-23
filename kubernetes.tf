@@ -52,6 +52,12 @@ resource "google_container_cluster" "quortex" {
   # The default maximum number of pods per node in this cluster.
   default_max_pods_per_node = var.default_max_pods_per_node
 
+  node_config {
+    shielded_instance_config {
+      enable_secure_boot = var.enable_secure_boot
+    }
+  }
+
   # The authentication information for accessing the Kubernetes master.
   # Setting an empty username and password explicitly disables basic auth
   master_auth {
@@ -148,6 +154,10 @@ resource "google_container_node_pool" "quortex" {
   max_pods_per_node = lookup(each.value, "max_pods_per_node", var.default_max_pods_per_node)
 
   node_config {
+
+    shielded_instance_config {
+      enable_secure_boot = var.enable_secure_boot
+    }
 
     # The name of a Google Compute Engine machine type.
     machine_type = lookup(each.value, "machine_type", "n1-standard-1")
