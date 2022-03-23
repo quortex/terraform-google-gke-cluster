@@ -52,6 +52,12 @@ resource "google_container_cluster" "quortex" {
   # The default maximum number of pods per node in this cluster.
   default_max_pods_per_node = var.default_max_pods_per_node
 
+  node_config {
+      shielded_instance_config{
+      enable_secure_boot= var.enable_secure_boot
+    }
+  }
+
   # The authentication information for accessing the Kubernetes master.
   # Setting an empty username and password explicitly disables basic auth
   master_auth {
@@ -149,6 +155,10 @@ resource "google_container_node_pool" "quortex" {
 
   node_config {
 
+    shielded_instance_config{
+    enable_secure_boot= var.enable_secure_boot
+  }
+
     # The name of a Google Compute Engine machine type.
     machine_type = lookup(each.value, "machine_type", "n1-standard-1")
 
@@ -173,9 +183,6 @@ resource "google_container_node_pool" "quortex" {
 
     # List of the type and count of accelerator cards attached to the instance.
     guest_accelerator = lookup(each.value, "guest_accelerator", [])
-
-    # A boolean that represents whether or not the underlying node  VPs are shielded 
-    enable_shielded_nodes = lookup(each.value, "enable_shielded_nodes", true)
 
     # The set of Google API scopes to be made available on all of the node VMs under the "default" service account.
     # These can be either FQDNs, or scope aliases. The following scopes are necessary to ensure the correct functioning of the cluster:

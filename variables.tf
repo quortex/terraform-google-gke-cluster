@@ -114,6 +114,11 @@ variable "resource_labels" {
   default     = {}
 }
 
+variable "enable_secure_boot" {
+  type        = bool
+  description = "Defines if the instance has Secure Boot enabled"
+  default     = false
+}
 variable "daily_maintenance_start_time" {
   type        = string
   description = "Cluster daily maintenance start time in RFC3339 date format."
@@ -122,6 +127,6 @@ variable "daily_maintenance_start_time" {
 
 variable "node_pools" {
   type        = any
-  description = "The cluster nodes instances configuration. Defined as a map whick key defines the node name and value is a block following official documentation (https://www.terraform.io/docs/providers/google/r/container_node_pool.html) for these values => version, max_pods_per_node, machine_type, image_type, min_cpu_platform, preemptible, enable_shielded_nodes, disk_type, disk_size_gb, local_ssd_count, guest_accelerator, oauth_scopes, taint, tags, labels, min_node_count, min_node_count, max_node_count, auto_repair, auto_upgrade"
+  description = "The cluster nodes instances configuration. Defined as a map whick key defines the node name and value is a block following official documentation (https://www.terraform.io/docs/providers/google/r/container_node_pool.html) for these values => version, max_pods_per_node, machine_type, image_type, min_cpu_platform, preemptible, disk_type, disk_size_gb, local_ssd_count, guest_accelerator, oauth_scopes, taint, tags, labels, min_node_count, min_node_count, max_node_count, auto_repair, auto_upgrade"
   default     = {}
 }
