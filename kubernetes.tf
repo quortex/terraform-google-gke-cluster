@@ -70,6 +70,21 @@ resource "google_container_cluster" "quortex" {
     }
   }
 
+  # Enable Workload Identity
+  dynamic "workload_identity_config" {
+    for_each = var.enable_workload_identity ? [1] : []
+    content {
+      workload_pool = "${data.google_project.project.project_id}.svc.id.goog"
+    }
+  }
+
+  dynamic "workload_metadata_config" {
+    for_each = var.enable_workload_identity ? [1] : []
+    content {
+      mode = "GKE_METADATA"
+    }
+  }
+
   private_cluster_config {
     # Either endpoint can be used.
     enable_private_endpoint = false
