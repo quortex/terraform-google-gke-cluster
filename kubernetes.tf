@@ -96,6 +96,9 @@ resource "google_container_cluster" "quortex" {
   # When enabled, identities in the system, including service accounts, nodes, and controllers, will have statically granted permissions beyond those provided by the RBAC configuration or IAM.
   enable_legacy_abac = var.enable_legacy_abac
 
+  # Enable Shielded Nodes features on all nodes in this cluster.
+  enable_shielded_nodes = var.enable_shielded_nodes
+
   network_policy {
     enabled  = var.network_policy_enabled
     provider = var.network_policy_provider

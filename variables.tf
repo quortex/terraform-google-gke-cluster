@@ -96,6 +96,12 @@ variable "enable_legacy_abac" {
   default     = false
 }
 
+variable "enable_shielded_nodes" {
+  type        = bool
+  description = "Enable Shielded Nodes features on all nodes in this cluster."
+  default     = false
+}
+
 variable "monitoring_service" {
   type        = string
   description = "The monitoring service that the cluster should write metrics to."
