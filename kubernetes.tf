@@ -61,8 +61,6 @@ resource "google_container_cluster" "quortex" {
   # The authentication information for accessing the Kubernetes master.
   # Setting an empty username and password explicitly disables basic auth
   master_auth {
-    username = ""
-    password = ""
 
     # Whether client certificate authorization is enabled for this cluster.
     client_certificate_config {
@@ -97,6 +95,9 @@ resource "google_container_cluster" "quortex" {
   # Whether the ABAC authorizer is enabled for this cluster.
   # When enabled, identities in the system, including service accounts, nodes, and controllers, will have statically granted permissions beyond those provided by the RBAC configuration or IAM.
   enable_legacy_abac = var.enable_legacy_abac
+
+  # Enable Shielded Nodes features on all nodes in this cluster.
+  enable_shielded_nodes = var.enable_shielded_nodes
 
   network_policy {
     enabled  = var.network_policy_enabled
