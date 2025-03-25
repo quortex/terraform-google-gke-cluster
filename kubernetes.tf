@@ -61,8 +61,6 @@ resource "google_container_cluster" "quortex" {
   # The authentication information for accessing the Kubernetes master.
   # Setting an empty username and password explicitly disables basic auth
   master_auth {
-    username = ""
-    password = ""
 
     # Whether client certificate authorization is enabled for this cluster.
     client_certificate_config {
