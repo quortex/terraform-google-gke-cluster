@@ -183,7 +183,13 @@ resource "google_container_node_pool" "quortex" {
     local_ssd_count = lookup(each.value, "local_ssd_count", 0)
 
     # List of the type and count of accelerator cards attached to the instance.
-    guest_accelerator = lookup(each.value, "guest_accelerator", [])
+    dynamic "guest_accelerator" {
+        for_each = lookup(each.value, "guest_accelerator", [])
+        content {
+          type = guest_accelerator["type"]
+          count = guest_accelerator["count"]
+        }
+    }
 
     # The set of Google API scopes to be made available on all of the node VMs under the "default" service account.
     # These can be either FQDNs, or scope aliases. The following scopes are necessary to ensure the correct functioning of the cluster:
@@ -198,7 +204,14 @@ resource "google_container_node_pool" "quortex" {
     #       key (Required) Key for taint.
     #       value (Required) Value for taint.
     #       effect (Required) Effect for taint. Accepted values are NO_SCHEDULE, PREFER_NO_SCHEDULE, and NO_EXECUTE.
-    taint = lookup(each.value, "taint", null)
+    dynamic "taint" {
+        for_each = lookup(each.value, "taint", [])
+        content {
+          key = taint["key"]
+          value = taint["value"]
+          effect = taint["effect"]
+        }
+    }
 
     # The metadata key/value pairs assigned to instances in the cluster.
     metadata = {
