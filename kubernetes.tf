@@ -188,7 +188,6 @@ resource "google_container_node_pool" "quortex" {
         content {
           type = guest_accelerator["type"]
           count = guest_accelerator["count"]
-          // Other optional arguments we could want to implement
         }
     }
 
